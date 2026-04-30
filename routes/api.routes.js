@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../controllers/auth.controller');
+const { getRecords, getSummary } = require('../controllers/api');
 const { requireJWT } = require('../middleware/jwt.auth');
 
 router.post('/login', auth.apiLogin);
-
-// Placeholder — Part 2 will add GET /api/records here
-router.get('/records', requireJWT, (req, res) => {
-  res.json({ message: 'records endpoint — wired up by Part 2', user: req.user });
-});
+router.get('/records', requireJWT, getRecords);
+router.get('/summary', requireJWT, getSummary);
 
 module.exports = router;
