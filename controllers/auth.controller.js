@@ -16,7 +16,7 @@ const processLogin = async (req, res) => {
   }
   req.session.flash = null;
   req.session.user = { id: user.id, username: user.username };
-  res.redirect('/dashboard');
+  req.session.save(() => res.redirect('/dashboard'));
 };
 
 const showRegister = (req, res) => {
@@ -32,7 +32,7 @@ const processRegister = async (req, res) => {
   const user = await User.create(username, password);
   req.session.flash = null;
   req.session.user = { id: user.id, username: user.username };
-  res.redirect('/dashboard');
+  req.session.save(() => res.redirect('/dashboard'));
 };
 
 const logout = (req, res) => {
