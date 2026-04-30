@@ -10,6 +10,8 @@
   <nav>
     <a href="/">Fuel Manager</a>
     {{#if user}}
+      <a href="/dashboard">Dashboard</a>
+      <a href="/summary">Summary</a>
       <span>{{user.username}}</span>
       <form action="/logout" method="POST">
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
