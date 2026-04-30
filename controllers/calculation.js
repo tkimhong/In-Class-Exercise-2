@@ -31,8 +31,8 @@ function groupByMonth(records) {
 
 function summariseRecords(records) {
   const totalSpend   = records.reduce((s, r) => s + (r.totalCost  || 0), 0);
-  const totalLitres  = records.reduce((s, r) => s + (r.litres     || 0), 0);
-  const totalKm      = records.reduce((s, r) => s + (r.distanceKm || 0), 0);
+  const totalLitres  = records.reduce((s, r) => s + (r.liters   || 0), 0);
+  const totalKm      = records.reduce((s, r) => s + (r.distance || 0), 0);
   const avgKmL       = calcKmPerLitre(totalKm, totalLitres);
   const avgPricePerL = totalLitres > 0
     ? parseFloat((totalSpend / totalLitres).toFixed(4))
