@@ -1,0 +1,118 @@
+{{!-- views/summary.hbs --}}
+
+<div class="summary-page">
+
+  <div class="page-header">
+    <h1>Expenditure Summary</h1>
+    <a href="/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+  </div>
+
+  {{!-- Overall stats cards --}}
+  <section class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-label">Total Records</span>
+      <span class="stat-value">{{overall.count}}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Total Spend</span>
+      <span class="stat-value">${{overall.totalSpend}}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Total Litres</span>
+      <span class="stat-value">{{overall.totalLitres}} L</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Total Distance</span>
+      <span class="stat-value">{{overall.totalKm}} km</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Avg km/L</span>
+      <span class="stat-value">{{overall.avgKmL}}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Avg Price/L</span>
+      <span class="stat-value">${{overall.avgPricePerL}}</span>
+    </div>
+  </section>
+
+  {{!-- Tab toggle --}}
+  <nav class="tab-nav">
+    <a href="/summary?view=monthly" class="tab {{#if isMonthly}}active{{/if}}">Monthly</a>
+    <a href="/summary?view=weekly"  class="tab {{#if isWeekly}}active{{/if}}">Weekly</a>
+  </nav>
+
+  {{!-- Monthly table --}}
+  {{#if isMonthly}}
+  <section class="table-section">
+    <h2>Monthly Breakdown</h2>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Records</th>
+          <th>Spend ($)</th>
+          <th>Litres (L)</th>
+          <th>Distance (km)</th>
+          <th>Avg km/L</th>
+          <th>Avg $/L</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each monthly}}
+        <tr>
+          <td>{{this.period}}</td>
+          <td>{{this.count}}</td>
+          <td>{{this.totalSpend}}</td>
+          <td>{{this.totalLitres}}</td>
+          <td>{{this.totalKm}}</td>
+          <td>{{this.avgKmL}}</td>
+          <td>{{this.avgPricePerL}}</td>
+        </tr>
+        {{else}}
+        <tr>
+          <td colspan="7" class="empty-state">No records found.</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </section>
+  {{/if}}
+
+  {{!-- Weekly table --}}
+  {{#if isWeekly}}
+  <section class="table-section">
+    <h2>Weekly Breakdown</h2>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Records</th>
+          <th>Spend ($)</th>
+          <th>Litres (L)</th>
+          <th>Distance (km)</th>
+          <th>Avg km/L</th>
+          <th>Avg $/L</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each weekly}}
+        <tr>
+          <td>{{this.period}}</td>
+          <td>{{this.count}}</td>
+          <td>{{this.totalSpend}}</td>
+          <td>{{this.totalLitres}}</td>
+          <td>{{this.totalKm}}</td>
+          <td>{{this.avgKmL}}</td>
+          <td>{{this.avgPricePerL}}</td>
+        </tr>
+        {{else}}
+        <tr>
+          <td colspan="7" class="empty-state">No records found.</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </section>
+  {{/if}}
+
+</div>
