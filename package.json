@@ -1,0 +1,35 @@
+{
+  "name": "in-class-exercise-2",
+  "version": "0.0.1",
+  "description": "",
+  "homepage": "https://github.com/tkimhong/In-Class-Exercise-2#readme",
+  "bugs": {
+    "url": "https://github.com/tkimhong/In-Class-Exercise-2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkimhong/In-Class-Exercise-2.git"
+  },
+  "license": "MIT",
+  "author": "Tiangkimhong Hoeu",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "csrf-sync": "^4.2.1",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-handlebars": "^9.0.1",
+    "express-session": "^1.19.0",
+    "jose": "^6.2.2",
+    "session-file-store": "^1.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
