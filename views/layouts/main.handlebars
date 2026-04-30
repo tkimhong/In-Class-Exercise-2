@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fuel Manager</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <nav>
     <a href="/">Fuel Manager</a>
     {{#if user}}
       <span>{{user.username}}</span>
-      <form action="/logout" method="POST" style="display:inline">
+      <form action="/logout" method="POST">
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
         <button type="submit">Logout</button>
       </form>
