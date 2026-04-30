@@ -1,23 +1,17 @@
-// routes/recordRoutes.js
 const express = require('express');
 const router = express.Router();
 const recordController = require('../controllers/recordController');
+const { requireLogin } = require('../middleware/session.auth');
+const { csrfSynchronisedProtection } = require('../config/csrf.config');
 
-// Note: Person 1 should apply the authentication middleware (e.g., requireAuth) 
-// and CSRF middleware to these routes in app.js, or you can import them here.
+router.get('/dashboard', requireLogin, recordController.getDashboard);
 
-// Dashboard - Read all
-router.get('/dashboard', recordController.getDashboard);
+router.get('/records/add', requireLogin, recordController.renderAddForm);
+router.post('/records/add', requireLogin, csrfSynchronisedProtection, recordController.createRecord);
 
-// Create
-router.get('/records/add', recordController.renderAddForm);
-router.post('/records/add', recordController.createRecord);
+router.get('/records/edit/:id', requireLogin, recordController.renderEditForm);
+router.post('/records/edit/:id', requireLogin, csrfSynchronisedProtection, recordController.updateRecord);
 
-// Update
-router.get('/records/edit/:id', recordController.renderEditForm);
-router.post('/records/edit/:id', recordController.updateRecord);
-
-// Delete (Using POST for standard web forms to support CSRF easily)
-router.post('/records/delete/:id', recordController.deleteRecord);
+router.post('/records/delete/:id', requireLogin, csrfSynchronisedProtection, recordController.deleteRecord);
 
 module.exports = router;

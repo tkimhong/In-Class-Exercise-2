@@ -7,6 +7,7 @@ const { SESSION_SECRET, PORT } = require('./config/app.config');
 const { generateToken } = require('./config/csrf.config');
 const webRoutes = require('./routes/web.routes');
 const apiRoutes = require('./routes/api.routes');
+const recordRoutes = require('./routes/recordRoutes');
 
 const app = express();
 
@@ -14,6 +15,9 @@ app.engine('handlebars', engine({
   defaultLayout: 'main',
   extname: '.handlebars',
   layoutsDir: path.join(__dirname, 'views/layouts'),
+  helpers: {
+    eq: (a, b) => a === b,
+  },
 }));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +41,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', webRoutes);
+app.use('/', recordRoutes);
 app.use('/api', apiRoutes);
 
 app.use((err, req, res, next) => {
